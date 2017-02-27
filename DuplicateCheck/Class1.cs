@@ -22,12 +22,21 @@ namespace DuplicateCheckNameSpace
             var duplicates = list.GroupBy(x => x)
                         .Where(group => group.Count() > 1)
                         .Select(group => group.Key);
-            foreach (T item in duplicates)
+            foreach (var item in duplicates)
             {
                 listDuplicates.Add(item);
             }
             return listDuplicates;
         }
-        
+
+        public static string GetReversed(this string str)
+        {
+            var reversed = new string((from c in str.Select((value, index) => new { value, index })
+                                       orderby c.index descending
+                                       select c.value).ToArray());
+            return reversed;
+        }
+
+
     }
 }

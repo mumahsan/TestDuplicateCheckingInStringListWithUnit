@@ -11,13 +11,14 @@ namespace MSTest
         [TestMethod]
         public void DuplicateCheckOnGivenMethod()
         {
-            var originalString = "[VICTOR],[ECHO],[BRAVO],[BRAVO],[OSCAR],[ECHO],[PAPA],[BRAVO]";
+            var originalString = "[a],[d],[b],[ab],[c],[d],[d],[ce],[ef],[ef],[b]";
             List<string> originalList = new List<string>();
             originalList.AddRange(originalString.Split(','));
             List<string> duplicates = originalList.GetDuplicates(); //method to get duplicates
-            Assert.AreEqual(2, duplicates.Count);
-            Assert.IsTrue(duplicates.Contains("[ECHO]"));
-            Assert.IsTrue(duplicates.Contains("[BRAVO]"));
+            Assert.AreEqual(3, duplicates.Count);
+            Assert.IsTrue(duplicates.Contains("[d]"));
+            Assert.IsTrue(duplicates.Contains("[ef]"));
+            Assert.IsTrue(duplicates.Contains("[b]"));
         }
         [TestMethod]
         public void DuplicateCheckOn1000StringsList()
